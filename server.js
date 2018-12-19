@@ -6,7 +6,7 @@ var exphbs = require("express-handlebars");
 // Requiring our Note and Article models
 var Note = require("./models/Note.js");
 var Article = require("./models/Article.js");
-// Set mongoose to leverage built in JavaScript ES6 Promises
+
 mongoose.Promise = Promise;
 
 // Initialize Express
@@ -24,9 +24,15 @@ app.use(express.static(process.cwd() + "/public"));
 var databaseUri = "mongodb://localhost/mongoosearticles";
 
 if (process.env.MONGODB_URI) {
-  mongoose.connect(process.env.MONGODB_URI,{useMongoClient:true});
+  mongoose.connect(process.env.MONGODB_URI, {
+    useMongoClient: true,
+    /* other options */
+  });
 } else {
-  mongoose.connect(databaseUri,{useMongoClient:true});
+  mongoose.connect(databaseUri, {
+    useMongoClient: true,
+    /* other options */
+  });
 }
 
 var db = mongoose.connection;
